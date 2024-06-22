@@ -51,7 +51,7 @@ public class Order implements Serializable {
     private String status;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderItems> orderItems;
+    private List<OrderItem> orderItems;
 
     public Order(Long id) {
         this.id = id;

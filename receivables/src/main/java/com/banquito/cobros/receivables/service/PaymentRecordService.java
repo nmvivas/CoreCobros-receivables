@@ -24,7 +24,7 @@ public class PaymentRecordService {
 
     @Transactional(readOnly = true)
     public List<PaymentRecord> getPaymentRecordsByOrderItemsId(Long orderItemsId) {
-        return paymentRecordRepository.findByOrderItemsId(orderItemsId);
+        return paymentRecordRepository.findByOrderItemId(orderItemsId);
     }
 
     @Transactional(readOnly = true)

@@ -29,8 +29,8 @@ public class PaymentRecord implements Serializable {
     @Column(name = "PAYMENT_RECORD_ID", nullable = false)
     private Long id;
 
-    @Column(name = "ORDER_ITEMS_ID", nullable = false)
-    private Long orderItemsId;
+    @Column(name = "ORDER_ITEM_ID", nullable = false)
+    private Long orderItemId;
 
     @Column(name = "PAYMENT_TYPE", length = 3, nullable = false)
     private String paymentType;
@@ -48,12 +48,8 @@ public class PaymentRecord implements Serializable {
     private String channel;
 
     @ManyToOne
-    @JoinColumn(name = "ORDER_ITEMS_ID", referencedColumnName = "ORDER_ITEMS_ID", insertable = false, updatable = false)
-    private OrderItems orderItems;
-
-    public PaymentRecord(Long id) {
-        this.id = id;
-    }
+    @JoinColumn(name = "ORDER_ITEM_ID", referencedColumnName = "ORDER_ITEM_ID", insertable = false, updatable = false)
+    private OrderItem orderItem;
 
     @Override
     public int hashCode() {
@@ -79,5 +75,4 @@ public class PaymentRecord implements Serializable {
             return false;
         return true;
     }
-
 }

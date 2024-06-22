@@ -6,7 +6,7 @@ import lombok.Value;
 
 @Value
 @Builder
-public class OrderItemsDTO {
+public class OrderItemDTO {
 
     private Long id;
     private Long orderId;

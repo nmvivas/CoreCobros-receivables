@@ -3,13 +3,13 @@ package com.banquito.cobros.receivables.util.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
-import com.banquito.cobros.receivables.dto.OrderItemsDTO;
-import com.banquito.cobros.receivables.model.OrderItems;
+import com.banquito.cobros.receivables.dto.OrderItemDTO;
+import com.banquito.cobros.receivables.model.OrderItem;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface OrderItemsMapper {
+public interface OrderItemMapper {
 
-    OrderItemsDTO toDTO(OrderItems orderItems);
+    OrderItemDTO toDTO(OrderItem orderItem);
 
-    OrderItems toPersistence(OrderItemsDTO dto);
+    OrderItem toPersistence(OrderItemDTO dto);
 }
