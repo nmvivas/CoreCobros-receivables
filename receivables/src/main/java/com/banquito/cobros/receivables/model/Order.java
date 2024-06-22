@@ -21,7 +21,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name = "ORDER")
+@Table(name = "\"ORDER\"")
 public class Order implements Serializable {
 
     @Id
@@ -29,17 +29,14 @@ public class Order implements Serializable {
     @Column(name = "ORDER_ID", nullable = false)
     private Long id;
 
-    @Column(name = "RECEIVABLES_ID", nullable = false)
-    private Long receivablesId;
+    @Column(name = "RECEIVABLE_ID", nullable = false)
+    private Integer receivableId;
 
     @Column(name = "START_DATE", nullable = false)
     private LocalDate startDate;
 
     @Column(name = "DUE_DATE", nullable = false)
     private LocalDate dueDate;
-
-    @Column(name = "TOTAL", precision = 17, scale = 2, nullable = false)
-    private BigDecimal total;
 
     @Column(name = "TOTAL_AMOUNT", precision = 17, scale = 2, nullable = false)
     private BigDecimal totalAmount;
