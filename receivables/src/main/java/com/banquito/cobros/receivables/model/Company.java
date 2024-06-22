@@ -1,17 +1,8 @@
 package com.banquito.cobros.receivables.model;
 
+import jakarta.persistence.*;
+import lombok.*;
 import java.io.Serializable;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
@@ -23,21 +14,26 @@ public class Company implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "COMPANY_ID", nullable = false)
+    @Column(name = "COMPANY_ID")
     private Long id;
 
-    @Column(name = "ACCOUNT_NUMBER", length = 10)
-    private String accountNumber;
+    @Column(name = "RUC", length = 20, nullable = false)
+    private String ruc;
 
-    @Column(name = "TYPE", length = 3)
-    private String type;
+    @Column(name = "COMPANY_NAME", length = 100, nullable = false)
+    private String companyName;
 
-    @Column(name = "STATUS", length = 3)
-    private String status;
+    @Column(name = "LEGAL_REPRESENTATIVE", length = 100, nullable = false)
+    private String legalRepresentative;
+
+    @Column(name = "SRI_AUTHORIZATION", nullable = false)
+    private Boolean sriAuthorization;
+
+    @Column(name = "CONTRACT_ACCEPTANCE", nullable = false)
+    private Boolean contractAcceptance;
 
     public Company(Long id) {
         this.id = id;
-
     }
 
     @Override

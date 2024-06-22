@@ -1,9 +1,10 @@
 package com.banquito.cobros.receivables.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.banquito.cobros.receivables.model.Company;
 
-public interface CompanyRepository extends JpaRepository<Company, Long> {
+import java.util.List;
 
+public interface CompanyRepository extends JpaRepository<Company, Long> {
+    List<Company> findByCompanyNameContaining(String namePattern);
 }

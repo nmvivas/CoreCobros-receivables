@@ -1,20 +1,10 @@
 package com.banquito.cobros.receivables.model;
 
-import java.io.Serializable;
-import java.time.LocalDate;
+import jakarta.persistence.*;
+import lombok.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
@@ -26,30 +16,25 @@ public class Receivables implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "RECEIVABLES_ID", nullable = false)
+    @Column(name = "RECEIVABLES_ID")
     private Long id;
 
-    @Column(name = "COMPANY_ID", nullable = false)
-    private Integer companyId;
+    @ManyToOne
+    @JoinColumn(name = "COMPANY_ID", nullable = false)
+    private Company company;
 
-    @Column(name = "ACCOUNT_ID", nullable = false)
-    private Integer accountId;
+    @ManyToOne
+    @JoinColumn(name = "ACCOUNT_ID", nullable = false)
+    private Account account;
 
-    @Column(name = "TYPE", length = 3)
+    @Column(name = "TYPE", length = 3, nullable = false)
     private String type;
 
-    @Column(name = "NAME", length = 100)
+    @Column(name = "NAME", length = 100, nullable = false)
     private String name;
 
-    @Column(name = "DATE")
-    private LocalDate date;
-
-    @ManyToOne
-    @JoinColumn(name = "COMPANY_ID", referencedColumnName = "COMPANY_ID", insertable = false, updatable = false)
-    private Company company;
-    @ManyToOne
-    @JoinColumn(name = "ACOCUNT_ID", referencedColumnName = "ACCOUNT_ID", insertable = false, updatable = false)
-    private Account account;
+    @Column(name = "DATE", nullable = false)
+    private LocalDateTime date;
 
     public Receivables(Long id) {
         this.id = id;

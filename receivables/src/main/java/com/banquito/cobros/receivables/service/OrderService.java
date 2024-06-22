@@ -2,10 +2,8 @@ package com.banquito.cobros.receivables.service;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.banquito.cobros.receivables.model.Order;
 import com.banquito.cobros.receivables.repository.OrderRepository;
 
