@@ -11,12 +11,12 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @Entity
-@Table(name = "RECEIVABLES")
+@Table(name = "RECEIVABLE")
 public class Receivables implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "RECEIVABLES_ID")
+    @Column(name = "RECEIVABLE_ID")
     private Long id;
 
     @ManyToOne
