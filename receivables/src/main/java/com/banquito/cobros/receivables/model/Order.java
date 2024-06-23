@@ -6,6 +6,7 @@ import lombok.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -40,6 +41,9 @@ public class Order implements Serializable {
 
     @Column(name = "STATUS", length = 3, nullable = false)
     private String status;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems;
 
     public Order(Long id) {
         this.id = id;

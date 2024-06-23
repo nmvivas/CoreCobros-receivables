@@ -7,7 +7,6 @@ import com.banquito.cobros.receivables.util.mapper.OrderMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,12 +30,6 @@ public class OrderService {
 
     @Transactional
     public OrderDTO createOrder(OrderDTO orderDTO) {
-        if (orderDTO.getStartDate().isBefore(LocalDate.now())) {
-            throw new RuntimeException("La fecha de inicio debe ser igual o mayor a la fecha actual.");
-        }
-        if (orderDTO.getDueDate().isBefore(orderDTO.getStartDate())) {
-            throw new RuntimeException("La fecha de vencimiento debe ser mayor a la fecha de inicio.");
-        }
         if (orderDTO.getId() != null && orderRepository.existsById(orderDTO.getId())) {
             throw new RuntimeException("El ID " + orderDTO.getId() + " ya existe.");
         }
