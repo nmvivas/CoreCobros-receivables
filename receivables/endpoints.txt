@@ -9,19 +9,6 @@ http://localhost:8080/company
 Buscar compania like 
 http://localhost:8080/company/search?namePattern=Soluciones
 
-Crear una Orden (Order)
-
-{
-    "receivablesId": 1,
-    "startDate": "2024-07-01",
-    "dueDate": "2024-12-31",
-    "total": 5000.00,
-    "totalAmount": 5000.00,
-    "records": "Record1",
-    "description": "Order Description",
-    "status": "ACT"
-}
-
 listar
 http://localhost:8080/orders
 
@@ -68,8 +55,6 @@ Buscar por contrapartida y companyid
 http://localhost:8080/order-items/search?counterpart=5678901230&companyId=3
 
 
-buscar por correo y me de la compania todos los campos
-
 account
 id_compania traiga todas las cuentas asociadas
 http://localhost:8080/accounts/company/1
@@ -80,12 +65,14 @@ http://localhost:8080/receivables/company/1
 receivale_id todo de order
 http://localhost:8080/orders/receivable/1
 
+buscar por correo y me de la compania todos los campos
 Company por client_email
 http://localhost:8080/company/email/sasalazar10@espe.edu.ec
 
 INSERTAR RECEIVABLE POST 
 http://localhost:8080/receivables
 {
+    "id": 2,
     "companyId": 1,
     "accountId": 1,
     "type": "COB",
@@ -93,8 +80,23 @@ http://localhost:8080/receivables
     "date": "2024-06-01T12:00:00"
 }
 
+
+
 OBTENER ULTIMO RECEIVABLE
 http://localhost:8080/receivables/last
 
 ULTIMO ORDER INSERTADO
 http://localhost:8080/orders/last
+
+http://localhost:8080/orders
+{
+    "id": 10,
+    "receivablesId": 6,
+    "startDate": "2024-06-02",
+    "dueDate": "2024-07-02",
+    "totalAmount": 2500.00,
+    "records": "150",
+    "description": "Servicios de consultoría",
+    "status": "PRO"
+}
+
