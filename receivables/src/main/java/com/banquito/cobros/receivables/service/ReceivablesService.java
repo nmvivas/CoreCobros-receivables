@@ -1,6 +1,7 @@
 package com.banquito.cobros.receivables.service;
 
 import com.banquito.cobros.receivables.dto.ReceivablesDTO;
+import com.banquito.cobros.receivables.model.Receivables;
 import com.banquito.cobros.receivables.repository.ReceivablesRepository;
 import com.banquito.cobros.receivables.util.mapper.ReceivablesMapper;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,20 @@ public class ReceivablesService {
         return receivablesRepository.findAll().stream()
                 .map(receivablesMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public ReceivablesDTO createReceivables(ReceivablesDTO receivablesDTO) {
+        if (receivablesDTO.getId() != null && receivablesRepository.existsById(receivablesDTO.getId())) {
+            throw new RuntimeException("El ID " + receivablesDTO.getId() + " ya existe.");
+        }
+        Receivables receivables = receivablesMapper.toPersistence(receivablesDTO);
+        return receivablesMapper.toDTO(receivablesRepository.save(receivables));
+    }
+
+    @Transactional(readOnly = true)
+    public ReceivablesDTO getLastInsertedReceivables() {
+        Receivables receivables = receivablesRepository.findTopByOrderByIdDesc();
+        return receivablesMapper.toDTO(receivables);
     }
 }

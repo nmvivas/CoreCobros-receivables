@@ -37,7 +37,11 @@ public class OrderService {
         if (orderDTO.getDueDate().isBefore(orderDTO.getStartDate())) {
             throw new RuntimeException("La fecha de vencimiento debe ser mayor a la fecha de inicio.");
         }
-        return orderMapper.toDTO(orderRepository.save(orderMapper.toPersistence(orderDTO)));
+        if (orderDTO.getId() != null && orderRepository.existsById(orderDTO.getId())) {
+            throw new RuntimeException("El ID " + orderDTO.getId() + " ya existe.");
+        }
+        Order order = orderMapper.toPersistence(orderDTO);
+        return orderMapper.toDTO(orderRepository.save(order));
     }
 
     @Transactional(readOnly = true)
@@ -60,5 +64,11 @@ public class OrderService {
                 .orElseThrow(() -> new RuntimeException("No existe la orden con id: " + id));
         order.setStatus(status);
         orderRepository.save(order);
+    }
+
+    @Transactional(readOnly = true)
+    public OrderDTO getLastInsertedOrder() {
+        Order order = orderRepository.findTopByOrderByIdDesc();
+        return orderMapper.toDTO(order);
     }
 }

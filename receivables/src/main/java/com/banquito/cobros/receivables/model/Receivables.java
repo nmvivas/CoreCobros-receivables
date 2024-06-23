@@ -1,12 +1,10 @@
 package com.banquito.cobros.receivables.model;
 
+import jakarta.persistence.*;
+import lombok.*;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
@@ -17,7 +15,6 @@ import lombok.ToString;
 public class Receivables implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "RECEIVABLE_ID")
     private Long id;
 

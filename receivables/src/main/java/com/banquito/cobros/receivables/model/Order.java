@@ -1,14 +1,11 @@
 package com.banquito.cobros.receivables.model;
 
+import jakarta.persistence.*;
+import lombok.*;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
@@ -19,7 +16,6 @@ import lombok.ToString;
 public class Order implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID", nullable = false)
     private Long id;
 
@@ -44,9 +40,6 @@ public class Order implements Serializable {
 
     @Column(name = "STATUS", length = 3, nullable = false)
     private String status;
-
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems;
 
     public Order(Long id) {
         this.id = id;

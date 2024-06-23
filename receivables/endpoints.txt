@@ -83,3 +83,18 @@ http://localhost:8080/orders/receivable/1
 Company por client_email
 http://localhost:8080/company/email/sasalazar10@espe.edu.ec
 
+INSERTAR RECEIVABLE POST 
+http://localhost:8080/receivables
+{
+    "companyId": 1,
+    "accountId": 1,
+    "type": "COB",
+    "name": "Cuenta por Cobrar Dos",
+    "date": "2024-06-01T12:00:00"
+}
+
+OBTENER ULTIMO RECEIVABLE
+http://localhost:8080/receivables/last
+
+ULTIMO ORDER INSERTADO
+http://localhost:8080/orders/last

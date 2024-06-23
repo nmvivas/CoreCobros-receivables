@@ -30,4 +30,16 @@ public class ReceivablesController {
         List<ReceivablesDTO> receivables = receivablesService.getAllReceivables();
         return ResponseEntity.ok(receivables);
     }
+
+    @PostMapping
+    public ResponseEntity<ReceivablesDTO> createReceivables(@RequestBody ReceivablesDTO receivablesDTO) {
+        ReceivablesDTO createdReceivables = receivablesService.createReceivables(receivablesDTO);
+        return ResponseEntity.ok(createdReceivables);
+    }
+
+    @GetMapping("/last")
+    public ResponseEntity<ReceivablesDTO> getLastInsertedReceivables() {
+        ReceivablesDTO receivables = receivablesService.getLastInsertedReceivables();
+        return ResponseEntity.ok(receivables);
+    }
 }

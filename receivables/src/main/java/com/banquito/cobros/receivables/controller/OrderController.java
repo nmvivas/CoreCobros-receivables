@@ -25,7 +25,7 @@ public class OrderController {
             OrderDTO createdOrder = orderService.createOrder(orderDTO);
             return ResponseEntity.ok(createdOrder);
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
@@ -59,5 +59,11 @@ public class OrderController {
     public ResponseEntity<List<OrderDTO>> getOrdersByReceivablesId(@PathVariable Long receivablesId) {
         List<OrderDTO> orders = orderService.getOrdersByReceivablesId(receivablesId);
         return ResponseEntity.ok(orders);
+    }
+
+    @GetMapping("/last")
+    public ResponseEntity<OrderDTO> getLastInsertedOrder() {
+        OrderDTO order = orderService.getLastInsertedOrder();
+        return ResponseEntity.ok(order);
     }
 }
