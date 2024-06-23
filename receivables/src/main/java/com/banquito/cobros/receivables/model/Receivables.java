@@ -1,10 +1,12 @@
 package com.banquito.cobros.receivables.model;
 
-import jakarta.persistence.*;
-import lombok.*;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
@@ -64,5 +66,4 @@ public class Receivables implements Serializable {
             return false;
         return true;
     }
-
 }

@@ -1,16 +1,16 @@
 package com.banquito.cobros.receivables.dto;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Value;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Value
 @Builder
 public class PaymentRecordDTO {
-
     private Long id;
-    private Long orderItemsId;
+    private Long orderItemId;
     private String paymentType;
     private BigDecimal owedPayment;
     private LocalDateTime paymentDate;
