@@ -2,6 +2,7 @@ package com.banquito.cobros.receivables.controller;
 
 import com.banquito.cobros.receivables.dto.AccountDTO;
 import com.banquito.cobros.receivables.service.AccountService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.GET, RequestMethod.POST,
         RequestMethod.PUT })
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/accounts")
 public class AccountController {
 
     private final AccountService accountService;
@@ -18,8 +19,15 @@ public class AccountController {
         this.accountService = accountService;
     }
 
+    @GetMapping("/company/{companyId}")
+    public ResponseEntity<List<AccountDTO>> getAccountsByCompanyId(@PathVariable Long companyId) {
+        List<AccountDTO> accounts = accountService.getAccountsByCompanyId(companyId);
+        return ResponseEntity.ok(accounts);
+    }
+
     @GetMapping
-    public List<AccountDTO> getAllAccounts() {
-        return accountService.getAllAccounts();
+    public ResponseEntity<List<AccountDTO>> getAllAccounts() {
+        List<AccountDTO> accounts = accountService.getAllAccounts();
+        return ResponseEntity.ok(accounts);
     }
 }

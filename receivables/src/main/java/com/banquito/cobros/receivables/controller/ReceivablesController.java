@@ -2,6 +2,7 @@ package com.banquito.cobros.receivables.controller;
 
 import com.banquito.cobros.receivables.dto.ReceivablesDTO;
 import com.banquito.cobros.receivables.service.ReceivablesService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +19,15 @@ public class ReceivablesController {
         this.receivablesService = receivablesService;
     }
 
+    @GetMapping("/company/{companyId}")
+    public ResponseEntity<List<ReceivablesDTO>> getReceivablesByCompanyId(@PathVariable Long companyId) {
+        List<ReceivablesDTO> receivables = receivablesService.getReceivablesByCompanyId(companyId);
+        return ResponseEntity.ok(receivables);
+    }
+
     @GetMapping
-    public List<ReceivablesDTO> getAllReceivables() {
-        return receivablesService.getAllReceivables();
+    public ResponseEntity<List<ReceivablesDTO>> getAllReceivables() {
+        List<ReceivablesDTO> receivables = receivablesService.getAllReceivables();
+        return ResponseEntity.ok(receivables);
     }
 }

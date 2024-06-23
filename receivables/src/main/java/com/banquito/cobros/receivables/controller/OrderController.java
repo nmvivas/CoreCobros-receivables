@@ -1,31 +1,28 @@
 package com.banquito.cobros.receivables.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import com.banquito.cobros.receivables.dto.OrderDTO;
+import com.banquito.cobros.receivables.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.banquito.cobros.receivables.dto.OrderDTO;
-import com.banquito.cobros.receivables.service.OrderService;
-import com.banquito.cobros.receivables.util.mapper.OrderMapper;
+import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.GET, RequestMethod.POST,
+        RequestMethod.PUT })
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
 
     private final OrderService orderService;
-    private final OrderMapper orderMapper;
 
-    public OrderController(OrderService orderService, OrderMapper orderMapper) {
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
-        this.orderMapper = orderMapper;
     }
 
     @PostMapping
     public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) {
         try {
-            OrderDTO createdOrder = orderMapper.toDTO(orderService.createOrder(orderMapper.toPersistence(orderDTO)));
+            OrderDTO createdOrder = orderService.createOrder(orderDTO);
             return ResponseEntity.ok(createdOrder);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().build();
@@ -34,17 +31,14 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity<List<OrderDTO>> getAllOrders() {
-        List<OrderDTO> orders = orderService.getAllOrders()
-                .stream()
-                .map(orderMapper::toDTO)
-                .collect(Collectors.toList());
+        List<OrderDTO> orders = orderService.getAllOrders();
         return ResponseEntity.ok(orders);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderDTO> getOrderById(@PathVariable Long id) {
         try {
-            OrderDTO order = orderMapper.toDTO(orderService.getOrderById(id));
+            OrderDTO order = orderService.getOrderById(id);
             return ResponseEntity.ok(order);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
@@ -59,5 +53,11 @@ public class OrderController {
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @GetMapping("/receivable/{receivablesId}")
+    public ResponseEntity<List<OrderDTO>> getOrdersByReceivablesId(@PathVariable Long receivablesId) {
+        List<OrderDTO> orders = orderService.getOrdersByReceivablesId(receivablesId);
+        return ResponseEntity.ok(orders);
     }
 }

@@ -4,6 +4,7 @@ import com.banquito.cobros.receivables.dto.AccountDTO;
 import com.banquito.cobros.receivables.repository.AccountRepository;
 import com.banquito.cobros.receivables.util.mapper.AccountMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +20,14 @@ public class AccountService {
         this.accountMapper = accountMapper;
     }
 
+    @Transactional(readOnly = true)
+    public List<AccountDTO> getAccountsByCompanyId(Long companyId) {
+        return accountRepository.findByCompanyId(companyId).stream()
+                .map(accountMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
     public List<AccountDTO> getAllAccounts() {
         return accountRepository.findAll().stream()
                 .map(accountMapper::toDTO)

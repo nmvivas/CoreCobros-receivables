@@ -1,0 +1,83 @@
+http://localhost:8080/accounts
+
+listar todos
+http://localhost:8080/receivables
+
+lista todas las companias
+http://localhost:8080/company
+
+Buscar compania like 
+http://localhost:8080/company/search?namePattern=Soluciones
+
+Crear una Orden (Order)
+
+{
+    "receivablesId": 1,
+    "startDate": "2024-07-01",
+    "dueDate": "2024-12-31",
+    "total": 5000.00,
+    "totalAmount": 5000.00,
+    "records": "Record1",
+    "description": "Order Description",
+    "status": "ACT"
+}
+
+listar
+http://localhost:8080/orders
+
+Obtener una Orden por ID
+http://localhost:8080/orders/1
+
+Actualizar el Estado de una Orden
+http://localhost:8080/orders/{id}/status?status=INA
+
+buscar order-item por id
+http://localhost:8080/order-items/1
+
+por order id
+http://localhost:8080/order-items/order/1
+
+INGRESAR ORDER-ITEM
+http://localhost:8080/order-items
+{
+    "orderId": 1,
+    "debtorName": "John Doe",
+    "identificationType": "CED",
+    "identification": "1234567890",
+    "debitAccount": "1234567890",
+    "owedAmount": 1500.00,
+    "counterpart": "9876543210",
+    "status": "ACT"
+}
+
+crear payment-record
+http://localhost:8080/payment-records
+{
+    "orderItemId": 1,
+    "paymentType": "CRD",
+    "owedPayment": 500.00,
+    "paymentDate": "2023-06-20T12:00:00",
+    "outstandingBalance": 1000.00,
+    "channel": "WEB"
+}
+
+payment-record por id 
+http://localhost:8080/payment-records/1
+
+Buscar por contrapartida y companyid
+http://localhost:8080/order-items/search?counterpart=5678901230&companyId=3
+
+
+buscar por correo y me de la compania todos los campos
+
+account
+id_compania traiga todas las cuentas asociadas
+http://localhost:8080/accounts/company/1
+
+id_company todo lo de recivables
+http://localhost:8080/receivables/company/1
+
+receivale_id todo de order
+http://localhost:8080/orders/receivable/1
+
+
