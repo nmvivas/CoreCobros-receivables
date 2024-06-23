@@ -1,6 +1,7 @@
 package com.banquito.cobros.receivables.service;
 
 import com.banquito.cobros.receivables.dto.CompanyDTO;
+import com.banquito.cobros.receivables.model.Company;
 import com.banquito.cobros.receivables.repository.CompanyRepository;
 import com.banquito.cobros.receivables.util.mapper.CompanyMapper;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,13 @@ public class CompanyService {
         return companyRepository.findByCompanyNameContaining(namePattern).stream()
                 .map(companyMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public CompanyDTO getCompanyByClientEmail(String clientEmail) {
+        Company company = companyRepository.findByClientEmail(clientEmail);
+        if (company == null) {
+            throw new RuntimeException("No existe la compañía con el correo electrónico: " + clientEmail);
+        }
+        return companyMapper.toDTO(company);
     }
 }

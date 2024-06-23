@@ -80,4 +80,6 @@ http://localhost:8080/receivables/company/1
 receivale_id todo de order
 http://localhost:8080/orders/receivable/1
 
+Company por client_email
+http://localhost:8080/company/email/sasalazar10@espe.edu.ec
 

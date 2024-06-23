@@ -12,4 +12,5 @@ public class CompanyDTO {
     private String legalRepresentative;
     private Boolean sriAuthorization;
     private Boolean contractAcceptance;
+    private String clientEmail;
 }

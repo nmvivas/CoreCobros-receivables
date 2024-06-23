@@ -27,4 +27,9 @@ public class CompanyController {
     public List<CompanyDTO> getCompaniesByNamePattern(@RequestParam String namePattern) {
         return companyService.getCompaniesByNamePattern(namePattern);
     }
+
+    @GetMapping("/email/{clientEmail}")
+    public CompanyDTO getCompanyByClientEmail(@PathVariable String clientEmail) {
+        return companyService.getCompanyByClientEmail(clientEmail);
+    }
 }

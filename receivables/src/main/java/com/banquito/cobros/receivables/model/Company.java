@@ -32,6 +32,9 @@ public class Company implements Serializable {
     @Column(name = "CONTRACT_ACCEPTANCE", nullable = false)
     private Boolean contractAcceptance;
 
+    @Column(name = "CLIENT_EMAIL", length = 50, nullable = false)
+    private String clientEmail;
+
     public Company(Long id) {
         this.id = id;
     }
