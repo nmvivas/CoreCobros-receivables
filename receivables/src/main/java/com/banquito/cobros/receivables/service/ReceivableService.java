@@ -23,6 +23,13 @@ public class ReceivableService {
     }
 
     @Transactional(readOnly = true)
+    public ReceivableDTO getReceivablesById(Long id) {
+        Receivable receivables = receivableRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No existe el recibo con id: " + id));
+        return receivableMapper.toDTO(receivables);
+    }
+
+    @Transactional(readOnly = true)
     public List<ReceivableDTO> getReceivablesByCompanyId(Long companyId) {
         return receivableRepository.findByCompanyId(companyId).stream()
                 .map(receivableMapper::toDTO)
