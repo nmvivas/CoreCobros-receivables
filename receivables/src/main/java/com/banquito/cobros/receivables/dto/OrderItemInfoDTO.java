@@ -20,7 +20,6 @@ public class OrderItemInfoDTO {
     private String identificationType;
     private String identification;
     private String debitAccount;
-    private BigDecimal owedAmount;
     private String counterpart;
     private String status;
 }
