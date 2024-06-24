@@ -42,7 +42,7 @@ public class Company implements Serializable {
     private Boolean contractAcceptance;
 
     @Column(name = "CLIENT_COMPANY", length = 50, nullable = false)
-    private String clientEmail;
+    private String clientCompany;
 
     public Company(Long id) {
         this.id = id;

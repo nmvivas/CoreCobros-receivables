@@ -4,18 +4,8 @@ import com.banquito.cobros.receivables.dto.OrderItemDTO;
 import com.banquito.cobros.receivables.dto.OrderItemInfoDTO;
 import com.banquito.cobros.receivables.model.OrderItem;
 import com.banquito.cobros.receivables.service.OrderItemService;
-
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,9 +31,9 @@ public class OrderItemController {
         return ResponseEntity.ok(orderItemService.getOrderItemsByOrderId(orderId));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<OrderItemDTO> getOrderItemById(@PathVariable Long id) {
-        return ResponseEntity.ok(orderItemService.getOrderItemById(id));
+    @GetMapping
+    public ResponseEntity<List<OrderItemDTO>> getAllOrderItems() {
+        return ResponseEntity.ok(orderItemService.getAllOrderItems());
     }
 
     @PutMapping("/{id}/status")
@@ -53,9 +43,16 @@ public class OrderItemController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<OrderItemInfoDTO>> getOrderItemInfoByCounterpartAndCompanyId(
-            @RequestParam Long companyId) {
+    public ResponseEntity<List<OrderItemInfoDTO>> getOrderItemInfoByCompanyId(@RequestParam Long companyId) {
         List<OrderItemInfoDTO> orderItems = orderItemService.getOrderItemInfoByCompanyId(companyId);
+        return ResponseEntity.ok(orderItems);
+    }
+
+    @GetMapping("/search/by-counterpart")
+    public ResponseEntity<List<OrderItemInfoDTO>> getOrderItemInfoByCounterpartAndCompanyId(
+            @RequestParam String counterpart, @RequestParam Long companyId) {
+        List<OrderItemInfoDTO> orderItems = orderItemService.getOrderItemInfoByCounterpartAndCompanyId(counterpart,
+                companyId);
         return ResponseEntity.ok(orderItems);
     }
 }

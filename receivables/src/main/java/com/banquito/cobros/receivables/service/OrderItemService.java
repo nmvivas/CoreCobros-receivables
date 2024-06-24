@@ -2,10 +2,9 @@ package com.banquito.cobros.receivables.service;
 
 import com.banquito.cobros.receivables.dto.OrderItemDTO;
 import com.banquito.cobros.receivables.dto.OrderItemInfoDTO;
-import com.banquito.cobros.receivables.util.mapper.OrderItemMapper;
 import com.banquito.cobros.receivables.model.OrderItem;
 import com.banquito.cobros.receivables.repository.OrderItemRepository;
-
+import com.banquito.cobros.receivables.util.mapper.OrderItemMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,11 +22,6 @@ public class OrderItemService {
         this.orderItemMapper = orderItemMapper;
     }
 
-    @Transactional
-    public OrderItem createOrderItem(OrderItem orderItem) {
-        return orderItemRepository.save(orderItem);
-    }
-
     @Transactional(readOnly = true)
     public List<OrderItemDTO> getOrderItemsByOrderId(Long orderId) {
         return orderItemRepository.findByOrderId(orderId).stream()
@@ -36,9 +30,15 @@ public class OrderItemService {
     }
 
     @Transactional(readOnly = true)
-    public OrderItemDTO getOrderItemById(Long id) {
-        return orderItemMapper.toDTO(orderItemRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No existe el item de orden con id: " + id)));
+    public List<OrderItemDTO> getAllOrderItems() {
+        return orderItemRepository.findAll().stream()
+                .map(orderItemMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public OrderItem createOrderItem(OrderItem orderItem) {
+        return orderItemRepository.save(orderItem);
     }
 
     @Transactional
@@ -53,6 +53,13 @@ public class OrderItemService {
     public List<OrderItemInfoDTO> getOrderItemInfoByCompanyId(Long companyId) {
         return orderItemRepository.findByOrderReceivablesCompanyIdAndStatus(companyId, "PEN")
                 .stream()
+                .map(orderItemMapper::toInfoDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<OrderItemInfoDTO> getOrderItemInfoByCounterpartAndCompanyId(String counterpart, Long companyId) {
+        return orderItemRepository.findByCounterpartAndOrderReceivablesCompanyId(counterpart, companyId).stream()
                 .map(orderItemMapper::toInfoDTO)
                 .collect(Collectors.toList());
     }
