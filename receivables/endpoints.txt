@@ -51,8 +51,8 @@ http://localhost:8080/payment-records
 payment-record por id 
 http://localhost:8080/payment-records/1
 
-Buscar por contrapartida y companyid
-http://localhost:8080/order-items/search?counterpart=5678901230&companyId=3
+Buscar por contrapartida y companyid estado PEN---
+http://localhost:5000/order-items/search?counterpart=1234567890&companyId=13
 
 
 account
