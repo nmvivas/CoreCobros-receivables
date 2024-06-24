@@ -10,7 +10,6 @@ import com.banquito.cobros.receivables.model.Account;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AccountMapper {
-
     @Mapping(source = "company.id", target = "companyId")
     AccountDTO toDTO(Account account);
 
