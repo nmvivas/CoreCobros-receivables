@@ -11,4 +11,6 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
     List<OrderItem> findByOrderReceivableCompanyIdAndStatus(Long companyId, String status);
 
     List<OrderItem> findByCounterpartAndOrderReceivableCompanyId(String counterpart, Long companyId);
+
+    List<OrderItem> findByOrderReceivableType(String type);
 }

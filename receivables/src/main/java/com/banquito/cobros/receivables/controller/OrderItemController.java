@@ -65,4 +65,10 @@ public class OrderItemController {
                 companyId);
         return ResponseEntity.ok(orderItems);
     }
+
+    @GetMapping("/search/by-type")
+    public ResponseEntity<List<OrderItemDTO>> getOrderItemsByReceivableType(@RequestParam String type) {
+        List<OrderItemDTO> orderItems = orderItemService.getOrderItemsByReceivableType(type);
+        return ResponseEntity.ok(orderItems);
+    }
 }

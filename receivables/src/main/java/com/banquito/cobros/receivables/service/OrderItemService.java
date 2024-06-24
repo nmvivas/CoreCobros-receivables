@@ -70,4 +70,11 @@ public class OrderItemService {
                 .map(orderItemMapper::toInfoDTO)
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<OrderItemDTO> getOrderItemsByReceivableType(String type) {
+        return orderItemRepository.findByOrderReceivableType(type).stream()
+                .map(orderItemMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 }
