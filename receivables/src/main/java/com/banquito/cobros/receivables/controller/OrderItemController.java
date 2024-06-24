@@ -36,6 +36,16 @@ public class OrderItemController {
         return ResponseEntity.ok(orderItemService.getAllOrderItems());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderItemDTO> getOrderItemById(@PathVariable Long id) {
+        try {
+            OrderItemDTO orderItemDTO = orderItemService.getOrderItemById(id);
+            return ResponseEntity.ok(orderItemDTO);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PutMapping("/{id}/status")
     public ResponseEntity<Void> updateOrderItemStatus(@PathVariable Long id, @RequestParam String status) {
         orderItemService.updateOrderItemStatus(id, status);
