@@ -6,6 +6,7 @@ import lombok.Value;
 @Value
 @Builder
 public class AccountDTO {
+
     private Long id;
     private Long companyId;
     private String accountNumber;

@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 @Value
 @Builder
 public class OrderItemDTO {
+
     private Long id;
     private Long orderId;
     private String debtorName;

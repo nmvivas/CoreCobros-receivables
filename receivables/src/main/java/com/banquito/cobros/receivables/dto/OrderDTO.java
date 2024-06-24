@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Value
 @Builder
 public class OrderDTO {
+
     private Long id;
     private Long receivablesId;
     private LocalDate startDate;

@@ -1,10 +1,18 @@
 package com.banquito.cobros.receivables.model;
 
-import jakarta.persistence.*;
-import lombok.*;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
@@ -18,14 +26,6 @@ public class Receivables implements Serializable {
     @Column(name = "RECEIVABLE_ID")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "COMPANY_ID", nullable = false)
-    private Company company;
-
-    @ManyToOne
-    @JoinColumn(name = "ACCOUNT_ID", nullable = false)
-    private Account account;
-
     @Column(name = "TYPE", length = 3, nullable = false)
     private String type;
 
@@ -34,6 +34,14 @@ public class Receivables implements Serializable {
 
     @Column(name = "DATE", nullable = false)
     private LocalDateTime date;
+
+    @ManyToOne
+    @JoinColumn(name = "COMPANY_ID", nullable = false)
+    private Company company;
+
+    @ManyToOne
+    @JoinColumn(name = "ACCOUNT_ID", nullable = false)
+    private Account account;
 
     public Receivables(Long id) {
         this.id = id;

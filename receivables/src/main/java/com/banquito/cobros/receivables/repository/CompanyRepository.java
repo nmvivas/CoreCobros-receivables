@@ -6,6 +6,7 @@ import com.banquito.cobros.receivables.model.Company;
 import java.util.List;
 
 public interface CompanyRepository extends JpaRepository<Company, Long> {
+
     List<Company> findByCompanyNameContaining(String namePattern);
 
     Company findByClientEmail(String clientEmail);

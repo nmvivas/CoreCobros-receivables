@@ -6,6 +6,7 @@ import lombok.Value;
 @Value
 @Builder
 public class CompanyDTO {
+
     private Long id;
     private String ruc;
     private String companyName;

@@ -3,6 +3,7 @@ package com.banquito.cobros.receivables.util.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
+
 import com.banquito.cobros.receivables.dto.CompanyDTO;
 import com.banquito.cobros.receivables.model.Company;
 

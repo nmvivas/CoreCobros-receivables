@@ -5,6 +5,7 @@ import com.banquito.cobros.receivables.dto.OrderItemInfoDTO;
 import com.banquito.cobros.receivables.util.mapper.OrderItemMapper;
 import com.banquito.cobros.receivables.model.OrderItem;
 import com.banquito.cobros.receivables.repository.OrderItemRepository;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,7 +50,7 @@ public class OrderItemService {
     }
 
     @Transactional(readOnly = true)
-    public List<OrderItemInfoDTO> getOrderItemInfoByCompanyId( Long companyId) {
+    public List<OrderItemInfoDTO> getOrderItemInfoByCompanyId(Long companyId) {
         return orderItemRepository.findByOrderReceivablesCompanyIdAndStatus(companyId, "PEN")
                 .stream()
                 .map(orderItemMapper::toInfoDTO)

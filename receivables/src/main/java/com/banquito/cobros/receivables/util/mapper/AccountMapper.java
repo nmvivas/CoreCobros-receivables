@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
+
 import com.banquito.cobros.receivables.dto.AccountDTO;
 import com.banquito.cobros.receivables.model.Account;
 

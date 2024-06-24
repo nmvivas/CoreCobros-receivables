@@ -9,8 +9,8 @@ import java.time.LocalDate;
 @Value
 @Builder
 public class OrderItemInfoDTO {
-    private Long orderItemId;
 
+    private Long orderItemId;
     private String debtorName;
     private BigDecimal owedAmount;
     private String companyName;
