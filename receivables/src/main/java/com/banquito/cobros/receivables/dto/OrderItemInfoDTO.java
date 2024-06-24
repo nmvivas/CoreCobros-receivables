@@ -3,6 +3,7 @@ package com.banquito.cobros.receivables.dto;
 import lombok.Builder;
 import lombok.Value;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Value
@@ -14,6 +15,12 @@ public class OrderItemInfoDTO {
     private String counterpart;
     private BigDecimal owedAmount;
     private String companyName;
-    private String identification;
     private LocalDate dueDate;
+    private String debtorName;
+    private String identificationType;
+    private String identification;
+    private String debitAccount;
+    private BigDecimal owedAmount;
+    private String counterpart;
+    private String status;
 }
