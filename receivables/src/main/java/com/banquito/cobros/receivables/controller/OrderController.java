@@ -65,9 +65,9 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/receivable/{receivablesId}")
-    public ResponseEntity<List<OrderDTO>> getOrdersByReceivablesId(@PathVariable Long receivablesId) {
-        List<OrderDTO> orders = orderService.getOrdersByReceivablesId(receivablesId);
+    @GetMapping("/receivable/{receivableId}")
+    public ResponseEntity<List<OrderDTO>> getOrdersByReceivableId(@PathVariable Long receivableId) {
+        List<OrderDTO> orders = orderService.getOrdersByReceivableId(receivableId);
         return ResponseEntity.ok(orders);
     }
 

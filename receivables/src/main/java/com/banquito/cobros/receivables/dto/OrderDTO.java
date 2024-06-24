@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class OrderDTO {
 
     private Long id;
-    private Long receivablesId;
+    private Long receivableId;
     private LocalDate startDate;
     private LocalDate dueDate;
     private BigDecimal totalAmount;

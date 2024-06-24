@@ -6,8 +6,7 @@ import com.banquito.cobros.receivables.model.Order;
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
-
-    List<Order> findByReceivablesId(Long receivablesId);
+    List<Order> findByReceivableId(Long receivableId);
 
     Order findTopByOrderByIdDesc();
 }

@@ -11,9 +11,9 @@ import com.banquito.cobros.receivables.model.Order;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface OrderMapper {
 
-    @Mapping(source = "receivables.id", target = "receivablesId")
+    @Mapping(source = "receivable.id", target = "receivableId")
     OrderDTO toDTO(Order order);
 
-    @Mapping(source = "receivablesId", target = "receivables.id")
+    @Mapping(source = "receivableId", target = "receivable.id")
     Order toPersistence(OrderDTO dto);
 }

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Value
 @Builder
-public class ReceivablesDTO {
+public class ReceivableDTO {
 
     private Long id;
     private Long companyId;

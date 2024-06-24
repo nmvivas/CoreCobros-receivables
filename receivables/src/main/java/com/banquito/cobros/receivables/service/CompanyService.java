@@ -36,10 +36,10 @@ public class CompanyService {
     }
 
     @Transactional(readOnly = true)
-    public CompanyDTO getCompanyByClientEmail(String clientEmail) {
-        Company company = companyRepository.findByClientEmail(clientEmail);
+    public CompanyDTO getCompanyByClientEmail(String clientCompany) {
+        Company company = companyRepository.findByClientCompany(clientCompany);
         if (company == null) {
-            throw new RuntimeException("No existe la compañía con el correo electrónico: " + clientEmail);
+            throw new RuntimeException("No existe la compañía con el correo electrónico: " + clientCompany);
         }
         return companyMapper.toDTO(company);
     }
@@ -53,7 +53,7 @@ public class CompanyService {
         company.setLegalRepresentative(companyDTO.getLegalRepresentative());
         company.setSriAuthorization(companyDTO.getSriAuthorization());
         company.setContractAcceptance(companyDTO.getContractAcceptance());
-        company.setClientCompany(companyDTO.getClientEmail());
+        company.setClientCompany(companyDTO.getClientCompany());
         return companyMapper.toDTO(companyRepository.save(company));
     }
 }

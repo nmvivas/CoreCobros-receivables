@@ -7,6 +7,8 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -26,6 +28,7 @@ import lombok.ToString;
 public class Order implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID", nullable = false)
     private Long id;
 
@@ -52,7 +55,7 @@ public class Order implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "RECEIVABLE_ID", nullable = false)
-    private Receivables receivables;
+    private Receivable receivable;
 
     public Order(Long id) {
         this.id = id;

@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -20,9 +22,10 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "RECEIVABLE")
-public class Receivables implements Serializable {
+public class Receivable implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "RECEIVABLE_ID")
     private Long id;
 
@@ -43,7 +46,7 @@ public class Receivables implements Serializable {
     @JoinColumn(name = "ACCOUNT_ID", nullable = false)
     private Account account;
 
-    public Receivables(Long id) {
+    public Receivable(Long id) {
         this.id = id;
     }
 
@@ -63,7 +66,7 @@ public class Receivables implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Receivables other = (Receivables) obj;
+        Receivable other = (Receivable) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

@@ -23,8 +23,8 @@ public class OrderService {
     }
 
     @Transactional(readOnly = true)
-    public List<OrderDTO> getOrdersByReceivablesId(Long receivablesId) {
-        return orderRepository.findByReceivablesId(receivablesId).stream()
+    public List<OrderDTO> getOrdersByReceivableId(Long receivableId) {
+        return orderRepository.findByReceivableId(receivableId).stream()
                 .map(orderMapper::toDTO)
                 .collect(Collectors.toList());
     }

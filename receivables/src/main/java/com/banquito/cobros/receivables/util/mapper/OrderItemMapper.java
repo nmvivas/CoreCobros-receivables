@@ -16,7 +16,7 @@ public interface OrderItemMapper {
     OrderItemDTO toDTO(OrderItem orderItem);
 
     @Mapping(source = "id", target = "orderItemId")
-    @Mapping(source = "order.receivables.company.companyName", target = "companyName")
+    @Mapping(source = "order.receivable.company.companyName", target = "companyName")
     @Mapping(source = "order.dueDate", target = "dueDate")
     OrderItemInfoDTO toInfoDTO(OrderItem orderItem);
 }

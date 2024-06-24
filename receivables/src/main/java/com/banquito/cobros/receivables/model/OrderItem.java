@@ -44,7 +44,7 @@ public class OrderItem implements Serializable {
     @Column(name = "IDENTIFICATION", length = 20, nullable = false)
     private String identification;
 
-    @Column(name = "DEBIT_ACCOUNT", length = 20, nullable = false)
+    @Column(name = "DEBIT_ACCOUNT", length = 10, nullable = false)
     private String debitAccount;
 
     @Column(name = "OWED_AMOUNT", precision = 17, scale = 2, nullable = false)

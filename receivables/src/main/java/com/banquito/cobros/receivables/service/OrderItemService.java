@@ -51,7 +51,7 @@ public class OrderItemService {
 
     @Transactional(readOnly = true)
     public List<OrderItemInfoDTO> getOrderItemInfoByCompanyId(Long companyId) {
-        return orderItemRepository.findByOrderReceivablesCompanyIdAndStatus(companyId, "PEN")
+        return orderItemRepository.findByOrderReceivableCompanyIdAndStatus(companyId, "PEN")
                 .stream()
                 .map(orderItemMapper::toInfoDTO)
                 .collect(Collectors.toList());
@@ -59,7 +59,7 @@ public class OrderItemService {
 
     @Transactional(readOnly = true)
     public List<OrderItemInfoDTO> getOrderItemInfoByCounterpartAndCompanyId(String counterpart, Long companyId) {
-        return orderItemRepository.findByCounterpartAndOrderReceivablesCompanyId(counterpart, companyId).stream()
+        return orderItemRepository.findByCounterpartAndOrderReceivableCompanyId(counterpart, companyId).stream()
                 .map(orderItemMapper::toInfoDTO)
                 .collect(Collectors.toList());
     }
