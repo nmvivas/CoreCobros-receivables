@@ -12,11 +12,9 @@ public class OrderItemInfoDTO {
     private Long orderItemId;
 
     private String debtorName;
-    private String counterpart;
     private BigDecimal owedAmount;
     private String companyName;
     private LocalDate dueDate;
-    private String debtorName;
     private String identificationType;
     private String identification;
     private String debitAccount;
