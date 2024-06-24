@@ -2,6 +2,7 @@ package com.banquito.cobros.receivables.controller;
 
 import com.banquito.cobros.receivables.dto.CompanyDTO;
 import com.banquito.cobros.receivables.service.CompanyService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.GET, RequestMethod.POST,
         RequestMethod.PUT })
 @RestController
-@RequestMapping("/companies")
+@RequestMapping("/company")
 public class CompanyController {
 
     private final CompanyService companyService;
@@ -26,5 +27,16 @@ public class CompanyController {
     @GetMapping("/search")
     public List<CompanyDTO> getCompaniesByNamePattern(@RequestParam String namePattern) {
         return companyService.getCompaniesByNamePattern(namePattern);
+    }
+
+    @GetMapping("/email/{clientCompany}")
+    public CompanyDTO getCompanyByClientCompany(@PathVariable String clientCompany) {
+        return companyService.getCompanyByClientCompany(clientCompany);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CompanyDTO> updateCompanyById(@PathVariable Long id, @RequestBody CompanyDTO companyDTO) {
+        CompanyDTO updatedCompany = companyService.updateCompanyById(id, companyDTO);
+        return ResponseEntity.ok(updatedCompany);
     }
 }

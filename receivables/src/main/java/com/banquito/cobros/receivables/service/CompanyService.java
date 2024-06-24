@@ -36,7 +36,7 @@ public class CompanyService {
     }
 
     @Transactional(readOnly = true)
-    public CompanyDTO getCompanyByClientEmail(String clientCompany) {
+    public CompanyDTO getCompanyByClientCompany(String clientCompany) {
         Company company = companyRepository.findByClientCompany(clientCompany);
         if (company == null) {
             throw new RuntimeException("No existe la compañía con el correo electrónico: " + clientCompany);
