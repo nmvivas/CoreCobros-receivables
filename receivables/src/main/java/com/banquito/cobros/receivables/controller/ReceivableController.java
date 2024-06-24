@@ -27,6 +27,16 @@ public class ReceivableController {
         this.receivableService = receivableService;
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ReceivableDTO> getReceivablesById(@PathVariable Long id) {
+        try {
+            ReceivableDTO receivablesDTO = receivableService.getReceivablesById(id);
+            return ResponseEntity.ok(receivablesDTO);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/company/{companyId}")
     public ResponseEntity<List<ReceivableDTO>> getReceivablesByCompanyId(@PathVariable Long companyId) {
         List<ReceivableDTO> receivables = receivableService.getReceivablesByCompanyId(companyId);

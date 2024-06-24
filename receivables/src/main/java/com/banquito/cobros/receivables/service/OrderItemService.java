@@ -23,6 +23,13 @@ public class OrderItemService {
     }
 
     @Transactional(readOnly = true)
+    public OrderItemDTO getOrderItemById(Long id) {
+        OrderItem orderItem = orderItemRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No existe el item de orden con id: " + id));
+        return orderItemMapper.toDTO(orderItem);
+    }
+
+    @Transactional(readOnly = true)
     public List<OrderItemDTO> getOrderItemsByOrderId(Long orderId) {
         return orderItemRepository.findByOrderId(orderId).stream()
                 .map(orderItemMapper::toDTO)
