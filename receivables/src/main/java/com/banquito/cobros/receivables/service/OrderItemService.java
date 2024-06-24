@@ -49,8 +49,8 @@ public class OrderItemService {
     }
 
     @Transactional(readOnly = true)
-    public List<OrderItemInfoDTO> getOrderItemInfoByCounterpartAndCompanyId(String counterpart, Long companyId) {
-        return orderItemRepository.findByCounterpartAndOrderReceivablesCompanyIdAndStatus(counterpart, companyId, "PEN")
+    public List<OrderItemInfoDTO> getOrderItemInfoByCompanyId( Long companyId) {
+        return orderItemRepository.findByOrderReceivablesCompanyIdAndStatus(companyId, "PEN")
                 .stream()
                 .map(orderItemMapper::toInfoDTO)
                 .collect(Collectors.toList());

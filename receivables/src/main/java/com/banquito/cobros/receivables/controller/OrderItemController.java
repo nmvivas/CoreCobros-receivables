@@ -44,9 +44,8 @@ public class OrderItemController {
 
     @GetMapping("/search")
     public ResponseEntity<List<OrderItemInfoDTO>> getOrderItemInfoByCounterpartAndCompanyId(
-            @RequestParam String counterpart, @RequestParam Long companyId) {
-        List<OrderItemInfoDTO> orderItems = orderItemService.getOrderItemInfoByCounterpartAndCompanyId(counterpart,
-                companyId);
+            @RequestParam Long companyId) {
+        List<OrderItemInfoDTO> orderItems = orderItemService.getOrderItemInfoByCompanyId(companyId);
         return ResponseEntity.ok(orderItems);
     }
 }
