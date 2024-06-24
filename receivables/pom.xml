@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.banquito.cobros</groupId>
 	<artifactId>receivables</artifactId>
-	<version>V1.1</version>
+	<version>V1.3</version>
 	<name>receivables</name>
 	<description>Receivables APIs REST</description>
 	<url />
