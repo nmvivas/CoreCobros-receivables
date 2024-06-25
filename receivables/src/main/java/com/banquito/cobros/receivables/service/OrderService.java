@@ -4,7 +4,6 @@ import com.banquito.cobros.receivables.dto.OrderDTO;
 import com.banquito.cobros.receivables.model.Order;
 import com.banquito.cobros.receivables.repository.OrderRepository;
 import com.banquito.cobros.receivables.util.mapper.OrderMapper;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +34,7 @@ public class OrderService {
             throw new RuntimeException("El ID " + orderDTO.getId() + " ya existe.");
         }
         Order order = orderMapper.toPersistence(orderDTO);
+        order.setStatus("PEN");
         return orderMapper.toDTO(orderRepository.save(order));
     }
 
