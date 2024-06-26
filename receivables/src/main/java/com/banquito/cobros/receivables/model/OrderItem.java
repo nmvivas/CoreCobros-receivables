@@ -35,25 +35,25 @@ public class OrderItem implements Serializable {
     @Column(name = "ORDER_ID", nullable = false)
     private Long orderId;
 
-    @Column(name = "DEBTOR_NAME", length = 100, nullable = false)
+    @Column(name = "DEBTOR_NAME", length = 100)
     private String debtorName;
 
-    @Column(name = "IDENTIFICATION_TYPE", length = 3, nullable = false)
+    @Column(name = "IDENTIFICATION_TYPE", length = 3)
     private String identificationType;
 
-    @Column(name = "IDENTIFICATION", length = 20, nullable = false)
+    @Column(name = "IDENTIFICATION", length = 20)
     private String identification;
 
-    @Column(name = "DEBIT_ACCOUNT", length = 10, nullable = false)
+    @Column(name = "DEBIT_ACCOUNT", length = 10)
     private String debitAccount;
 
-    @Column(name = "OWED_AMOUNT", precision = 17, scale = 2, nullable = false)
+    @Column(name = "OWED_AMOUNT", precision = 17, scale = 2)
     private BigDecimal owedAmount;
 
-    @Column(name = "COUNTERPART", length = 10, nullable = false)
+    @Column(name = "COUNTERPART", length = 10)
     private String counterpart;
 
-    @Column(name = "STATUS", length = 3, nullable = false)
+    @Column(name = "STATUS", length = 3)
     private String status;
 
     @ManyToOne
