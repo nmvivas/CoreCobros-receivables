@@ -21,10 +21,10 @@ public class AccountService {
     }
 
     @Transactional(readOnly = true)
-    public AccountDTO getAccountById(Long accountId) {
-        return accountRepository.findById(accountId)
+    public AccountDTO getAccountById(Long id) {
+        return accountRepository.findById(id)
                 .map(accountMapper::toDTO)
-                .orElseThrow(() -> new RuntimeException("No existe la cuenta con id: " + accountId));
+                .orElseThrow(() -> new RuntimeException("No existe la cuenta con id: " + id));
     }
 
     @Transactional(readOnly = true)

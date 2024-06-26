@@ -71,16 +71,14 @@ public class OrderItemService {
     @Transactional(readOnly = true)
     public List<OrderItemInfoDTO> getOrderItemInfoByCounterpartAndCompanyId(String counterpart, Long companyId) {
         boolean companyExists = companyRepository.existsById(companyId);
-        List<OrderItem> orderItems = orderItemRepository.findByCounterpartAndOrderReceivableCompanyId(counterpart,
-                companyId);
-        if (orderItems.isEmpty()) {
-            throw new RuntimeException("No existe la contrapartida: " + counterpart);
+        boolean counterpartExists = orderItemRepository
+                .findByCounterpartAndOrderReceivableCompanyId(counterpart, companyId).size() > 0;
+
+        if (!companyExists || !counterpartExists) {
+            throw new RuntimeException("La contrapartida o la compañía no existen");
         }
 
-        if (!companyExists && orderItems.isEmpty()) {
-            throw new RuntimeException("No existe la compañía con id: " + companyId);
-        }
-        return orderItems.stream()
+        return orderItemRepository.findByCounterpartAndOrderReceivableCompanyId(counterpart, companyId).stream()
                 .map(orderItemMapper::toInfoDTO)
                 .collect(Collectors.toList());
     }
