@@ -1,11 +1,13 @@
 package com.banquito.cobros.receivables.service;
 
 import com.banquito.cobros.receivables.dto.AccountDTO;
+import com.banquito.cobros.receivables.model.Account;
 import com.banquito.cobros.receivables.repository.AccountRepository;
 import com.banquito.cobros.receivables.util.mapper.AccountMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,9 +24,12 @@ public class AccountService {
 
     @Transactional(readOnly = true)
     public AccountDTO getAccountById(Long id) {
-        return accountRepository.findById(id)
-                .map(accountMapper::toDTO)
-                .orElseThrow(() -> new RuntimeException("No existe la cuenta con id: " + id));
+        Optional<Account> accountOptional = accountRepository.findById(id);
+        if (accountOptional.isPresent()) {
+            return accountMapper.toDTO(accountOptional.get());
+        } else {
+            throw new RuntimeException("No existe la cuenta con id: " + id);
+        }
     }
 
     @Transactional(readOnly = true)

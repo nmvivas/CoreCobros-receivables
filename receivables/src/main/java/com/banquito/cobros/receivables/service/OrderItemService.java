@@ -71,8 +71,8 @@ public class OrderItemService {
     @Transactional(readOnly = true)
     public List<OrderItemInfoDTO> getOrderItemInfoByCounterpartAndCompanyId(String counterpart, Long companyId) {
         boolean companyExists = companyRepository.existsById(companyId);
-        boolean counterpartExists = orderItemRepository
-                .findByCounterpartAndOrderReceivableCompanyId(counterpart, companyId).size() > 0;
+        boolean counterpartExists = !orderItemRepository
+                .findByCounterpartAndOrderReceivableCompanyId(counterpart, companyId).isEmpty();
 
         if (!companyExists || !counterpartExists) {
             throw new RuntimeException("La contrapartida o la compañía no existen");
