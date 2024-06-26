@@ -3,6 +3,7 @@ package com.banquito.cobros.receivables.service;
 import com.banquito.cobros.receivables.dto.OrderItemDTO;
 import com.banquito.cobros.receivables.dto.OrderItemInfoDTO;
 import com.banquito.cobros.receivables.model.OrderItem;
+import com.banquito.cobros.receivables.repository.CompanyRepository;
 import com.banquito.cobros.receivables.repository.OrderItemRepository;
 import com.banquito.cobros.receivables.util.mapper.OrderItemMapper;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,13 @@ public class OrderItemService {
 
     private final OrderItemRepository orderItemRepository;
     private final OrderItemMapper orderItemMapper;
+    private final CompanyRepository companyRepository;
 
-    public OrderItemService(OrderItemRepository orderItemRepository, OrderItemMapper orderItemMapper) {
+    public OrderItemService(OrderItemRepository orderItemRepository, OrderItemMapper orderItemMapper,
+            CompanyRepository companyRepository) {
         this.orderItemRepository = orderItemRepository;
         this.orderItemMapper = orderItemMapper;
+        this.companyRepository = companyRepository;
     }
 
     @Transactional(readOnly = true)
@@ -66,7 +70,17 @@ public class OrderItemService {
 
     @Transactional(readOnly = true)
     public List<OrderItemInfoDTO> getOrderItemInfoByCounterpartAndCompanyId(String counterpart, Long companyId) {
-        return orderItemRepository.findByCounterpartAndOrderReceivableCompanyId(counterpart, companyId).stream()
+        boolean companyExists = companyRepository.existsById(companyId);
+        List<OrderItem> orderItems = orderItemRepository.findByCounterpartAndOrderReceivableCompanyId(counterpart,
+                companyId);
+        if (orderItems.isEmpty()) {
+            throw new RuntimeException("No existe la contrapartida: " + counterpart);
+        }
+
+        if (!companyExists && orderItems.isEmpty()) {
+            throw new RuntimeException("No existe la compañía con id: " + companyId);
+        }
+        return orderItems.stream()
                 .map(orderItemMapper::toInfoDTO)
                 .collect(Collectors.toList());
     }
